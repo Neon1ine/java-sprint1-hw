@@ -52,33 +52,29 @@ public class Main {
                 "\n4. Выйти из приложения.");
     }
 
-    public static int readMonth() {
+    private static int readInput(String str) {
         Scanner scanner = new Scanner(System.in);
-        int month = 0;
-        while (month < 1 || month > 12) {
-            System.out.println("Введите месяц от 1 до 12:");
-            month = scanner.nextInt();
+        int userInput;
+        while (true) {
+            System.out.println(str);
+            userInput = scanner.nextInt();
+            if (str.contains("месяц") && !(userInput < 1 || userInput > 12)) return userInput;
+            else if (str.contains("день") && !(userInput < 1 || userInput > 30)) return userInput;
+            else if (str.contains("шагов") && !(userInput < 0)) return userInput;
+            System.out.println("Ввод не соответствует заданному формату!");
         }
-        return month;
+
+    }
+
+    public static int readMonth() {
+        return readInput("Введите месяц от 1 до 12:");
     }
 
     public static int readDay() {
-        Scanner scanner = new Scanner(System.in);
-        int day = 0;
-        while (day < 1 || day > 30) {
-            System.out.println("Введите день от 1 до 30:");
-            day = scanner.nextInt();
-        }
-        return day;
+        return readInput("Введите день от 1 до 30:");
     }
 
     public static int readSteps() {
-        Scanner scanner = new Scanner(System.in);
-        int steps = -1;
-        while (steps < 0) {
-            System.out.println("Введите количество шагов:");
-            steps = scanner.nextInt();
-        }
-        return steps;
+        return readInput("Введите количество шагов:");
     }
 }
